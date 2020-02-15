@@ -7,11 +7,12 @@ const home = () => import('../views/home/Home')
 const category = () => import('../views/category/Category.vue')
 const cart = () => import('../views/cart/Cart.vue')
 const profile = () => import('../views/profile/Profile.vue')
+const detail = () => import('../views/detail/Detail.vue')
 
 const routes = [
  {
    path:'',
-   redirect:home
+   redirect:'/home'
  },
  {
    path:'/home',
@@ -28,6 +29,10 @@ const routes = [
  {
    path:'/profile',
    component:profile
+ },
+ {
+   path:'/detail/:iid',
+   component:detail
  }
 ]
 
