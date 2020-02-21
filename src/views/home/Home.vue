@@ -25,7 +25,7 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
-import { getHomeMultiData,getHomeGoods } from 'network/home'
+import { getHomeBanner,getHomeRecommend,getHomeGoods } from 'network/home'
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import FeatureView from './childComps/FeatureView'
@@ -120,9 +120,22 @@ export default {
     },
     /**网络请求 */
     getHomeMultiData(){
-      getHomeMultiData().then(res => {
-       this.banners = res.data.banner.list
-       this.recommends = res.data.recommend.list
+      // getHomeMultiData().then(res => {
+      //  this.banners = res.data.banner.list
+      //  this.recommends = res.data.recommend.list
+      // }).catch(err=>{
+      //   console.log(err)
+      // })
+       getHomeBanner().then(res => {
+       this.banners = res
+       console.log(res)
+      }).catch(err=>{
+        console.log(err)
+      })
+      getHomeRecommend().then(res => {
+       this.recommends = res
+       console.log(res)
+
       }).catch(err=>{
         console.log(err)
       })
@@ -130,10 +143,16 @@ export default {
     getHomeGoods(type){
       const page = this.goods[type].page +1
       getHomeGoods(type,page).then(res=>{
-        this.goods[type].list.push(...res.data.list)
+        this.goods[type].list.push(...res)
         this.goods[type].page += 1
         this.$refs.scroll.finishPullUp()
+        // for (let index = 0; index < res.data.list.length; index++) {
+        //    res.data.list[index]['topType']=type;
+        // }
+        // console.log(JSON.stringify(res.data.list))
+
       })
+        
     }
   },
   computed:{
