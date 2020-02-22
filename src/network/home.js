@@ -1,20 +1,20 @@
 import {request} from './request'
 
-// export function getHomeMultiData(){
+export function getHomeMultiData(){
+  return request({
+    url:'/homeInfo'
+  })
+}
+// export function getHomeBanner(){
 //   return request({
-//     url:'/home/multidata'
+//     url:'/home/banner'
 //   })
 // }
-export function getHomeBanner(){
-  return request({
-    url:'/home/banner'
-  })
-}
-export function getHomeRecommend(){
-  return request({
-    url:'/home/recommend'
-  })
-}
+// export function getActivity(){
+//   return request({
+//     url:'/home/activity'
+//   })
+// }
 
 export function getHomeGoods(type,page){
   return request({

@@ -25,7 +25,7 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
-import { getHomeBanner,getHomeRecommend,getHomeGoods } from 'network/home'
+import { getHomeMultiData,getHomeGoods } from 'network/home'
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import FeatureView from './childComps/FeatureView'
@@ -120,25 +120,25 @@ export default {
     },
     /**网络请求 */
     getHomeMultiData(){
-      // getHomeMultiData().then(res => {
-      //  this.banners = res.data.banner.list
-      //  this.recommends = res.data.recommend.list
+      getHomeMultiData().then(res => {
+        this.banners = res[0].banner
+        this.recommends = res[0].recommend
+      }).catch(err=>{
+        console.log(err)
+      })
+      //  getHomeBanner().then(res => {
+      //  this.banners = res
+      //  console.log(res)
       // }).catch(err=>{
       //   console.log(err)
       // })
-       getHomeBanner().then(res => {
-       this.banners = res
-       console.log(res)
-      }).catch(err=>{
-        console.log(err)
-      })
-      getHomeRecommend().then(res => {
-       this.recommends = res
-       console.log(res)
+      // getActivity().then(res => {
+      //  this.recommends = res
+      //  console.log(res)
 
-      }).catch(err=>{
-        console.log(err)
-      })
+      // }).catch(err=>{
+      //   console.log(err)
+      // })
     },
     getHomeGoods(type){
       const page = this.goods[type].page +1

@@ -66,25 +66,27 @@ export default {
   created(){
     this.iid = this.$route.params.iid
     getDetailData(this.iid).then(res=>{
-      const data = res.result
+      console.log(res)
       //1.获取顶部的图片轮播数据
-      this.topImages = data.itemInfo.topImages
+      this.topImages = res.topImages
       //2.获取商品信息
-      this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+      this.goods = res.goods
       //3.获取店铺信息
-      this.shop = new Shop(data.shopInfo)
+      this.shop =  res.shop
       //4.获取商品详情数据
-      this.detailInfo = data.detailInfo
+      this.detailInfo = res.detail
       //5.获取商品参数数据
-      this.paramInfo = new GoodsParams(data.itemParams.info,data.itemParams.rule)
+      this.paramInfo = res.param
       //6.获取评论数据
-      if(data.rate.list){
-        this.commentInfo = data.rate.list[0]
+      if(res.comment){
+        this.commentInfo = res.comment
       }
     })
     //7.获取推荐数据
     getRecommends().then(res=>{
-      this.recommends = res.data.list
+      // this.recommends = res.data.list
+      this.recommends = res
+
     })
     this.getThemeTopY = debounce(()=>{
       this.themeTopYs=[]
@@ -126,18 +128,19 @@ export default {
     },
     addToCart(){
       //1.获取购物车需要展示的信息
+      console.log(this.goods)
       const product = {}
       product.image = this.topImages[0]
       product.title = this.goods.title
       product.desc = this.goods.desc
-      product.price = this.goods.realPrice
+      product.price = this.goods.nowPrice
       product.iid = this.iid
       //2.将商品添加到购物车里
       // this.$store.dispatch('addCart',product)
-       this.addCart(product).then(res=>
-       { 
-         this.$toast.show(res,2000)
-       }
+      this.addCart(product).then(res=>
+      { 
+        this.$toast.show(res,2000)
+      }
       )
     }
   }
