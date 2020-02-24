@@ -1,8 +1,8 @@
 <template>
      <ul class="leftbar">
-       <li v-for="(item,index) in category" class="leftbar-item " 
+       <li v-for="(item,index) in category" class="leftbar-item" 
        :class="{active:index===currentIndex}"
-       @click="itemChange(index,item)">{{item.title}}</li>
+       @click="itemChange(index,item)" :key="index">{{item.title}}</li>
      </ul>
 </template>
 
@@ -34,10 +34,13 @@ export default {
 <style scoped>
 
 .leftbar {
-  position: absolute;
-  top: 44px;
-  width: 25%;
+  /* position: absolute;
+  width: 25%; */
   background: #eee;
+  height: 100%;
+  width: 100px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .leftbar-item {
   height: 44px;

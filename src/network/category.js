@@ -8,17 +8,14 @@ export function getCategory(){
 
 export function getSubcategory(maitKey) {
   return request({
-    url: '/subcategory',
-    params: {
-      maitKey
-    }
+    url: `/subcategory/${maitKey}`,
   })
 }
 
 export function getCategoryDetail(miniWallkey, type) {
   return request({
     url: '/subcategory/detail',
-    params: {
+    data: {
       miniWallkey,
       type
     }
