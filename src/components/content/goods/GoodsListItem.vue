@@ -34,7 +34,7 @@ export default {
   },
   computed:{
     imageInfo(){
-      return  this.goodItem.image || this.goodItem.show.img
+      return  this.goodItem.image ||  this.goodItem.img || this.goodItem.show.img 
     }
   }
 }

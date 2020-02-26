@@ -25,7 +25,7 @@ export default {
   methods:{
     itemChange(index,item){
       this.currentIndex = index
-      this.$emit('itemChange',item.maitKey)
+      this.$emit('itemChange',{maitKey:item.maitKey,index:index})
       }
     }
 }

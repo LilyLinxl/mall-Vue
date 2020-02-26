@@ -20,5 +20,4 @@ export function request(config){
   })
   //2.发送真正的网络请求,返回的就是一个promise对象
   return instance(config)
- 
 }

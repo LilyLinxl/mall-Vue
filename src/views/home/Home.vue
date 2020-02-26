@@ -15,8 +15,8 @@
       <recommend-view :recommends="recommends"/>
       <feature-view/>
       <tab-control :titles="['流行','新款','精选']" 
-                   @tabClick="tabClick" 
-                   ref="tabControl2"/>
+                  @tabClick="tabClick" 
+                  ref="tabControl2"/>
       <goods-list :goods="goodsList"/>
     </scroll>
     <back-top @click.native="backTop" v-show="isShowBackTop"/>
@@ -79,7 +79,6 @@ export default {
   activated(){
     this.$refs.scroll.refresh()
     this.$refs.scroll.scrollTo(0,this.saveY,0)
-
   },
   deactivated(){
     this.saveY  = this.$refs.scroll.getScrollY()

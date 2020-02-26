@@ -14,10 +14,6 @@ export function getSubcategory(maitKey) {
 
 export function getCategoryDetail(miniWallkey, type) {
   return request({
-    url: '/subcategory/detail',
-    data: {
-      miniWallkey,
-      type
-    }
+    url: `/categorydetail/${miniWallkey}/${type}`
   })
 }
