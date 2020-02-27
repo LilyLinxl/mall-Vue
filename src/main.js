@@ -13,6 +13,7 @@ Vue.use(toast)
 FastClick.attach(document.body)
 //使用懒加载的插件
 Vue.use(VueLazyLoad)
+
 new Vue({
   render: h => h(App),
   router,

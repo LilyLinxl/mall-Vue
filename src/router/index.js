@@ -8,7 +8,7 @@ const category = () => import('../views/category/Category.vue')
 const cart = () => import('../views/cart/Cart.vue')
 const profile = () => import('../views/profile/Profile.vue')
 const detail = () => import('../views/detail/Detail.vue')
-
+const Login = ()=> import('../views/login/Login.vue')
 const routes = [
  {
    path:'',
@@ -33,6 +33,18 @@ const routes = [
  {
    path:'/detail/:iid',
    component:detail
+ },
+ {
+  path:'/login',
+  component:Login,
+  beforeEnter(to,from,next){
+    if(from.path==="/profile"){
+      this.$store.commit('set_bottombar_visible',false)
+      next()
+    }else{
+      next()
+    }
+  }
  }
 ]
 

@@ -40,7 +40,8 @@ export default {
       miniWallkey:'',
       isShowBackTop:false,
       tabOffsetTop:0,
-      isTabFixed:false
+      isTabFixed:false,
+      index:0
     }
   },
   mixins:[backTopMixin],
@@ -54,6 +55,9 @@ export default {
   },
   created(){
     this.initInfo()
+  },
+  updated(){
+    this._getCategoryDetail(this.miniWallkey,this.titles[this.index]||'pop')
   },
   methods:{
     //获取一级分类数据
@@ -73,6 +77,7 @@ export default {
     },
     tabClick(index){
       console.log(this.miniWallkey)
+      this.index = index
       this._getCategoryDetail(this.miniWallkey,this.titles[index])
     },
     //获取二级分类数据
