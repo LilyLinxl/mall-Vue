@@ -6,6 +6,10 @@
         <input type="text" v-mode="model.username" placeholder="用户名/邮箱/手机号">
         <input type="password" v-mode="model.password" placeholder="密码">
       </form>
+      <div class="other-opt">
+        <a href="#" class="left">免费注册</a>
+        <a href="#" class="right">忘记密码</a>
+      </div>
       <div class="login-btn">
         <button @click="login" id="login">登录</button>
       </div>
@@ -19,20 +23,18 @@ export default {
   name:'Login',
   data () {
     return {
-      model:{}
+      model:{},
+      isShow:false
     }
   },
   components:{
     LoginNavBar
-  },
-  created(){
-    this.$store.commit('set_bottombar_visible',false)
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit('set_bottombar_visible',true)
-    next()
   }
-
+  // ,
+  // beforeRouteLeave (to, from, next){
+  //   this.$store.commit('set_bottombar_visible',true)
+  //   next()
+  // }
 }
 </script>
 
@@ -55,7 +57,7 @@ input,button {
   border-bottom: 1px solid #eee;
   padding-bottom: 5px;
 }
-.login-btn{
+.login-btn,.other-opt{
   display: flex;
 }
 .login-btn button {
@@ -64,5 +66,12 @@ input,button {
   border-radius: 20px;
   color: #fff;
   margin-top: 20px;
+}
+.other-opt a {
+  font-size: 14px;
+  margin-top: 20px;
+}
+.other-opt a:first-child{
+  flex: 1;
 }
 </style>

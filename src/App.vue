@@ -3,7 +3,7 @@
     <keep-alive exclude="Detail">
       <router-view></router-view>
     </keep-alive>
-    <main-tab-bar v-if="$store.state.showBottomNav"/>
+    <main-tab-bar/>
     <icon></icon>
     <svg-icon></svg-icon>
   </div>

@@ -1,5 +1,5 @@
 <template>
-   <tab-bar>
+   <tab-bar v-show="$route.path!=='/login'">
       <tab-bar-item path="/home">
         <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="">
         <img slot="item-icon-active" src="~assets/img/tabbar/home_active.svg" alt="">

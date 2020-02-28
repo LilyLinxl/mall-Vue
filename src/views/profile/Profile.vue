@@ -51,6 +51,12 @@ export default {
     NavBar,
     UserInfo,
     ListView
+  },
+  beforeRouteLeave (to, from, next) {
+    if(to.path==="/login"){
+      this.$store.commit('set_bottombar_visible',false)
+    }
+    next()
   }
 }
 </script>

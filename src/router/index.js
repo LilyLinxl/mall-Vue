@@ -36,16 +36,8 @@ const routes = [
  },
  {
   path:'/login',
-  component:Login,
-  beforeEnter(to,from,next){
-    if(from.path==="/profile"){
-      this.$store.commit('set_bottombar_visible',false)
-      next()
-    }else{
-      next()
-    }
-  }
- }
+  component:Login
+}
 ]
 
 
