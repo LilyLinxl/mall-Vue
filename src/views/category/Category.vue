@@ -76,7 +76,6 @@ export default {
       })
     },
     tabClick(index){
-      console.log(this.miniWallkey)
       this.index = index
       this._getCategoryDetail(this.miniWallkey,this.titles[index])
     },
