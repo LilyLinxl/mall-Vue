@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import Vue from 'vue'
 export function request(config){
   //1.创建axios实例
   const instance = axios.create({
@@ -9,14 +9,23 @@ export function request(config){
     timeout:5000
   })
   instance.interceptors.request.use(config=>{
+    if(localStorage.token){
+      config.headers.Authorization = 'Bearer ' + localStorage.token
+    }
     return config
   },err=>{
-    return err
+    return Promise.reject(err)
   })
-  instance.interceptors.response.use(response=>{
+  instance.interceptors.response.use(response =>{//前端设置响应拦截，通用错误处理
     return response.data
   },err=>{
-    return err
+    if(err.response.data.message){
+      Vue.prototype.$toast.show(err.response.data.message,2000)
+      if(err.response.status === 401){
+        router.push('/login')
+      }
+    }
+    return Promise.reject(err)
   })
   //2.发送真正的网络请求,返回的就是一个promise对象
   return instance(config)

@@ -9,6 +9,8 @@ const cart = () => import('../views/cart/Cart.vue')
 const profile = () => import('../views/profile/Profile.vue')
 const detail = () => import('../views/detail/Detail.vue')
 const Login = ()=> import('../views/login/Login.vue')
+const Register = ()=> import('../views/login/Register.vue')
+
 const routes = [
  {
    path:'',
@@ -37,6 +39,10 @@ const routes = [
  {
   path:'/login',
   component:Login
+},
+{
+  path:'/register',
+  component:Register
 }
 ]
 

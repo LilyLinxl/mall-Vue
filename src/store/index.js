@@ -8,9 +8,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state:{
-    cartList:[]
-    // ,
-    // showBottomNav:true
+    cartList:[],
+    userInfo:'',
+    login:false
   },
   mutations:mutations,
   actions:actions,

@@ -8,7 +8,7 @@
       </slot>
       <div class="login-info left">
         <slot name="user-nickname">
-          <div>登录/注册</div>
+          <div>{{username}}</div>
         </slot>
         <div class="phone">
           <span>
@@ -23,14 +23,41 @@
 </template>
 
 <script>
+import {mapState, mapMutations} from 'vuex'
+
 	export default {
     name: "UserInfo",
+    data(){
+      return {
+        username:'登录/注册'
+      }
+    },
     methods:{
       toLogin(){
         this.$router.push('/login')
+      },
+      initData(){
+        console.log(this.userInfo)
+        if(this.userInfo){
+          this.username = this.userInfo
+        }else{
+          this.username = '登录/注册'
+        }
       }
+    },
+    computed:{
+      ...mapState([
+            'userInfo',
+      ]),
+    },
+    mounted(){
+      this.initData()
+    },
+    watch: {
+        userInfo: function (value){
+          this.initData()
+        }
     }
-   
 	}
 </script>
 

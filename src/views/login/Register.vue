@@ -1,19 +1,19 @@
 <template>
   <div class="login">
     <l-r-nav-bar>
-      <div slot="title">账号登录</div>
+      <div slot="title">账号注册</div>
     </l-r-nav-bar>
     <l-r-form  class="account-content">
       <form action="" class="form" slot="form">
         <input type="text" v-model="model.username" placeholder="用户名/邮箱/手机号">
         <input type="password" v-model="model.password" placeholder="密码">
+        <input type="password" v-model="model.repassword" placeholder="确认密码">
       </form>
       <div class="other-opt" slot="other-opt">
-        <a href="/register" >免费注册</a>
-        <a href="#" >忘记密码</a>
+        已有账号了?<a href="/login" >登录</a>
       </div>
       <div slot="btn" class="btn">
-        <button @click="login" id="login">登录</button>
+        <button @click="register" id="register">注册</button>
       </div>
     </l-r-form>
   </div>
@@ -22,16 +22,15 @@
 <script>
 import LRNavBar from './childComps/LRNavBar'
 import LRForm from './childComps/LRForm'
-import {mapState, mapMutations} from 'vuex'
-
-import {login} from 'network/login'
+import {register} from 'network/register'
 export default {
   name:'Login',
   data () {
     return {
       model:{
         username:'',
-        password:''
+        password:'',
+        repassword:''
       },
       isShow:false
     }
@@ -41,21 +40,18 @@ export default {
     LRForm
   },
   methods:{
-    ...mapMutations([
-                'record_userinfo',
-     ]),
-    login(){
-      if(Object.values(this.model).length!==2){
+    register(){
+      if(Object.values(this.model).length!==3){
         this.$toast.show('请填写完整',2000)
         return
       }
-      login(this.model).then(res=>{
-        console.log(res)
-        this.record_userinfo(res);
-        // localStorage.token = res.token//前端保存token
-        // localStorage.username = res.username
-        if(res.token){
-          this.$toast.show('登陆成功',2000)
+      if(this.model.password!==this.model.repassword){
+        this.$toast.show('两次密码输入不同',2000)
+        return
+      }
+      register(this.model).then(res=>{
+        this.$toast.show(res.msg,2000)
+        if(res.code===200){
           this.$router.push('/profile')
         }
       })
@@ -96,14 +92,13 @@ input,button {
 .other-opt{
   text-align: right;
   display: block;
-  display: flex;
+  font-size: 14px;
+  margin-top: 15px;
 }
 .other-opt a {
   font-size: 14px;
   margin-top: 20px;
-}
-.other-opt a:last-child {
-  flex:1;
+  
 }
 
 

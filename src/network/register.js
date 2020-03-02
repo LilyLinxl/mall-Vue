@@ -1,7 +1,7 @@
 import {request} from './request'
-export function login(form){
+export function register(form){
   return request({
-    url:'/login',
+    url:'/register',
     data:form,
     method: 'post',
   })

@@ -3,7 +3,9 @@
     <div slot="left" class="back" @click="back">
       <img src="~assets/img/common/back.svg" alt="">
     </div>
-      <div slot="center">账号登录</div>
+      <div slot="center">
+        <slot name ="title">默认</slot>
+      </div>
   </nav-bar>
 </template>
 <script>
